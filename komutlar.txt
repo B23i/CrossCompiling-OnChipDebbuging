@@ -1,0 +1,11 @@
+-Host
+
+aarch64-linux-gnu-gcc -g3 -Og -fno-omit-frame-pointer -Wall -Wextra -pthread main.c -o scheduler_rpi4
+
+scp ./scheduler_rpi4 b23i@10.30.90.140:~/    
+
+aarch64-unknown-linux-gnu-gdb scheduler_rpi4 -ex "target remote 10.30.90.140:3333"
+
+-Target
+
+gdbserver :3333 ./scheduler_rpi4
